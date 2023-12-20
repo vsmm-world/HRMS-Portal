@@ -5,7 +5,7 @@ import { PrismaService } from 'src/prisma/prisma.service';
 
 @Injectable()
 export class AttendanceService {
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(private readonly prisma: PrismaService) { }
 
   async create(createAttendanceDto: CreateAttendanceDto, emp_id: string) {
     const attendance = await this.prisma.attendance.create({
@@ -28,22 +28,6 @@ export class AttendanceService {
     });
     return attendance;
   }
-
-  // async findAll(page: number, perPage: number) {
-  //   const skip = (page - 1) * perPage;
-  //   const take = perPage;
-  //   const attendance = await this.prisma.attendance.findMany({
-  //     where: {
-  //       isDeleted: false
-  //     },
-  //     include: {
-  //       employee: true,
-  //     },
-  //     skip,
-  //     take
-  //   });
-  //   return attendance;
-  // }
 
   async findOne(id: string) {
     const attendance = await this.prisma.attendance.findFirst({
