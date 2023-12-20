@@ -5,7 +5,7 @@ import { PrismaService } from 'src/prisma/prisma.service';
 
 @Injectable()
 export class DepartmentService {
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(private readonly prisma: PrismaService) { }
 
   async create(createDepartmentDto: CreateDepartmentDto, orgId: string) {
     const department = await this.prisma.department.create({
@@ -28,22 +28,6 @@ export class DepartmentService {
     });
     return departments;
   }
-
-  // async findAll(page : number, perPage : number) {
-  //     const skip = (page - 1) * perPage;
-  //     const take = perPage;
-  //     const departments = await this.prisma.department.findMany({
-  //         where: {
-  //             isDeleted: false
-  //         },
-  //         include: {
-  //             organization: true
-  //         },
-  //         skip,
-  //         take
-  //     });
-  //     return departments;
-  // }
 
   async findOne(id: string) {
     const department = await this.prisma.department.findFirst({
