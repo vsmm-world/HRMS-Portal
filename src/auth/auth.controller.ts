@@ -26,25 +26,13 @@ export class AuthController {
   async verifyOtp(
     @Body() createAuthDto: CreateAuthDto
   ) {
-    const{otp,otpRef}= createAuthDto;
-    const isValid = await this.authService.validateOtp(otp,otpRef);
+    const { otp, otpRef } = createAuthDto;
+    const isValid = await this.authService.validateOtp(otp, otpRef);
 
     if (isValid) {
-      return { message: 'OTP and OTP Reference is valid.',isValid };
+      return { message: 'OTP and OTP Reference is valid.', isValid };
     } else {
       return { message: 'Invalid OTP and OTP Reference.' };
     }
   }
-
-  // @Post('login')
-  // async login(@Body() loginDto: LoginDto) {
-  //   const { email} = loginDto;
-  //   const user = await this.authService.login(email);
-
-  //   if (!user) {
-  //     throw new UnauthorizedException('Invalid credentials');
-  //   } else {
-  //     return { message: 'User login successfully', user };
-  //   }
-  // }
 }
