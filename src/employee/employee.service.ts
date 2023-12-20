@@ -5,7 +5,7 @@ import { PrismaService } from 'src/prisma/prisma.service';
 
 @Injectable()
 export class EmployeeService {
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(private readonly prisma: PrismaService) { }
 
   async create(createEmployeeDto: CreateEmployeeDto, dep_id: string) {
     const employee = await this.prisma.employee.create({
@@ -28,22 +28,6 @@ export class EmployeeService {
     });
     return employees;
   }
-
-  // async findAll(page: number, perPage: number) {
-  //   const skip = (page - 1) * perPage;
-  //   const take = perPage;
-  //   const employees = await this.prisma.employee.findMany({
-  //     where: {
-  //       isDeleted: false
-  //     },
-  //     include: {
-  //       department: {include: {organization:true}}
-  //     },
-  //     skip,
-  //     take
-  //   });
-  //   return employees;
-  // }
 
   async findOne(id: string) {
     const employee = await this.prisma.employee.findFirst({

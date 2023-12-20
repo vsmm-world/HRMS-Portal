@@ -6,8 +6,6 @@ import {
   Patch,
   Param,
   Delete,
-  ParseIntPipe,
-  Query,
   NotFoundException,
   UseGuards
 } from '@nestjs/common';
@@ -20,7 +18,7 @@ import { AuthGuard } from '@nestjs/passport';
 @Controller('employee')
 @ApiTags('employee')
 export class EmployeeController {
-  constructor(private readonly employeeService: EmployeeService) {}
+  constructor(private readonly employeeService: EmployeeService) { }
 
   @Post(':dep_id')
   @UseGuards(AuthGuard('jwt'))
@@ -38,12 +36,6 @@ export class EmployeeController {
   findAll() {
     return this.employeeService.findAll();
   }
-
-  // @Get()
-  // @ApiOperation({ summary: 'Get paginated employee' })
-  // findAll(@Query('page', ParseIntPipe) page: number = 1, @Query('perPage', ParseIntPipe) perPage: number = 10) {
-  //   return this.employeeService.findAll(page, perPage);
-  // }
 
   @Get(':id')
   @UseGuards(AuthGuard('jwt'))
