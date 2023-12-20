@@ -1,1 +1,1 @@
-export class LeaveRequest {}
+export class LeaveRequest { }

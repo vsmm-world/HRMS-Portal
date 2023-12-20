@@ -24,12 +24,6 @@ export class LeaveRequestController {
     return this.leaveRequestService.findAll();
   }
 
-  // @Get()
-  // @ApiOperation({ summary: 'Get paginated employee leave request' })
-  // findAll(@Query('page', ParseIntPipe) page: number = 1, @Query('perPage', ParseIntPipe) perPage: number = 10) {
-  //   return this.leaveRequestService.findAll(page, perPage);
-  // }
-
   @Get(':id')
   @UseGuards(AuthGuard('jwt'))
   @ApiBearerAuth()

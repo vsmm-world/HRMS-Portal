@@ -9,4 +9,4 @@ import { PrismaModule } from 'src/prisma/prisma.module';
   providers: [LeaveRequestService],
   exports: [LeaveRequestService],
 })
-export class LeaveRequestModule {}
+export class LeaveRequestModule { }

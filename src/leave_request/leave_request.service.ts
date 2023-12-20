@@ -20,18 +20,6 @@ export class LeaveRequestService {
     return leaveRequest;
   }
 
-  // async findAll(page: number, perPage: number){
-  //   const skip = (page - 1)* perPage;
-  //   const take = perPage;
-  //   const leaveRequest = await this.prisma.leave_request.findMany({
-  //     where: {isDeleted: false},
-  //     include: { employee: true },
-  //     skip,
-  //     take,
-  //   });
-  //   return leaveRequest;
-  // }
-
   async findOne(id: string) {
     const leaveRequest = await this.prisma.leave_request.findFirst({
       where: {
