@@ -31,7 +31,7 @@ export class AuthService {
         email,
       },
     });
-console.log(login)
+    console.log(login)
 
     if (login) {
       const otps = Math.floor(100000 + Math.random() * 900000).toString();
@@ -112,35 +112,5 @@ console.log(login)
     const payload = { sub: userId };
     return this.jwtService.sign(payload);
   }
-
-  // async login(email: string) {
-  //   const login = await this.prisma.organization.findUnique({
-  //     where: {
-  //       email,
-  //     },
-  //   });
-
-  //   // console.log(login, 'login............');
-
-  //   if (login) {
-  //     const token = this.generateJwtToken(login.id);
-  //     const accesstoken = await this.prisma.userSession.create({
-  //       data: {
-  //         token,
-  //         Organization: {
-  //           connect: {
-  //             id: login.id,
-  //           },
-  //         },
-  //       },
-  //       include: {
-  //         Organization: true,
-  //       },
-  //     });
-
-  //     // console.log(accesstoken, 'accesstoken............');
-  //     return accesstoken;
-  //   }
-  // }
 }
 
