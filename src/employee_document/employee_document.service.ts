@@ -5,7 +5,7 @@ import { PrismaService } from 'src/prisma/prisma.service';
 
 @Injectable()
 export class EmployeeDocumentService {
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(private readonly prisma: PrismaService) { }
 
   async create(
     createEmployeeDocumentDto: CreateEmployeeDocumentDto,
@@ -27,18 +27,6 @@ export class EmployeeDocumentService {
     });
     return employeeDocument;
   }
-
-  // async findAll(page: number, perPage: number){
-  //   const skip = (page - 1)* perPage;
-  //   const take = perPage;
-  //   const employeeDocument = await this.prisma.employee_document.findMany({
-  //     where: {isDeleted: false},
-  //     include: { employee: true },
-  //     skip,
-  //     take,
-  //   });
-  //   return employeeDocument;
-  // }
 
   async findOne(id: string) {
     const employeeDocument = await this.prisma.employee_document.findFirst({
