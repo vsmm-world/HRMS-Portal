@@ -20,7 +20,7 @@ import { AuthGuard } from '@nestjs/passport';
 @Controller('attendance')
 @ApiTags('attendance')
 export class AttendanceController {
-  constructor(private readonly attendanceService: AttendanceService) {}
+  constructor(private readonly attendanceService: AttendanceService) { }
 
   @Post(':emp_id')
   @UseGuards(AuthGuard('jwt'))
@@ -38,12 +38,6 @@ export class AttendanceController {
   findAll() {
     return this.attendanceService.findAll();
   }
-
-  // @Get()
-  // @ApiOperation({ summary: 'Get paginated attendance' })
-  // findAll(@Query('page', ParseIntPipe) page: number = 1, @Query('perPage', ParseIntPipe) perPage: number = 10) {
-  //   return this.attendanceService.findAll(page, perPage);
-  // }
 
   @Get(':id')
   @UseGuards(AuthGuard('jwt'))
