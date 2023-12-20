@@ -6,8 +6,7 @@ import {
 
 @ValidatorConstraint({ name: 'customWebsiteFormat', async: false })
 export class CustomWebsiteFormatValidator
-  implements ValidatorConstraintInterface
-{
+  implements ValidatorConstraintInterface {
   validate(website: string, args: ValidationArguments) {
     const websiteRegex =
       /^(http:\/\/|https:\/\/|www\.|ftp:\/\/)[a-zA-Z0-9]+\.[a-zA-Z]{2,4}(\/\S*)?$/;

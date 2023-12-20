@@ -16,13 +16,9 @@ import { AttendanceService } from './attendance/attendance.service';
 import { EmployeeDocumentModule } from './employee_document/employee_document.module';
 import { AuthModule } from './auth/auth.module';
 import { PrismaService } from './prisma/prisma.service';
-import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
-    // ConfigModule.forRoot({
-    //   // load: [sendgridConfig],
-    // }),
     PrismaModule,
     OrganizationModule,
     DepartmentModule,
