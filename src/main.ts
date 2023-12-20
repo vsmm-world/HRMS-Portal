@@ -13,7 +13,6 @@ async function bootstrap() {
   const config = new DocumentBuilder()
     .setTitle('HRMS portal Demo')
     .addBearerAuth()
-    // .addApiKey({ type: 'apiKey', name: 'orgId', in: 'header' }, 'orgId')
     .setDescription('The HRMS portal demo API description')
     .setVersion('1.0')
     .build();
