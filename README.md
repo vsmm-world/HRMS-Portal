@@ -1,73 +1,98 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# HRMS Portal (NestJS)
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+> 🍴 This is a fork of [Harsh-Patel-05/HRMS-Portal-using-nestjs](https://github.com/Harsh-Patel-05/HRMS-Portal-using-nestjs), kept as a personal reference/exploration of another HRMS implementation in NestJS + Prisma.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+A Human Resource Management System backend covering organizations, departments, employees, attendance, and leave requests.
 
-## Description
+## Features
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+- **Auth** — JWT-based authentication with Passport strategies
+- **Organization** — top-level organization records
+- **Department** — departments within an organization
+- **Employee** — employee records with associated `Address` and `Employee_document` uploads
+- **Attendance** — attendance tracking per employee
+- **Leave Requests** — leave request submission/management (`Leave_request`)
+- **Swagger** — interactive API docs generated from decorators
 
-## Installation
+## Tech Stack
 
-```bash
-$ npm install
+- [NestJS 10](https://nestjs.com/) (TypeScript)
+- [Prisma](https://www.prisma.io/) ORM
+- Passport + JWT authentication
+- Jest for unit/e2e testing
+
+## Data Model
+
+Defined in `prisma/schema.prisma`:
+
+- `User`, `UserSession` — accounts & sessions
+- `Organization`, `Department` — org structure
+- `Employee`, `Address`, `Employee_document` — employee records
+- `Attendance` — attendance tracking
+- `Leave_request` — leave management
+
+## Project Structure
+
+```
+src/
+├── auth/               # JWT auth, Passport strategy
+├── organization/       # organization CRUD
+├── department/         # department CRUD
+├── employee/           # employee CRUD
+├── employee_document/  # employee document uploads
+├── leave_request/       # leave requests
+├── attendance/          # attendance tracking
+├── validator/           # custom DTO validators
+├── config/              # app configuration
+└── prisma/              # Prisma service/module
 ```
 
-## Running the app
+## Getting Started
+
+### Prerequisites
+- Node.js 18+
+- A database reachable via `DATABASE_URL` (Prisma)
+
+### Setup
 
 ```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+git clone https://github.com/vsmm-world/HRMS-Portal.git
+cd HRMS-Portal
+npm install
 ```
 
-## Test
+Create a `.env` file in the project root (**do not commit this file** — it's gitignored):
 
 ```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+DATABASE_URL="<your-database-connection-string>"
 ```
 
-## Support
+Generate the Prisma client and sync the schema:
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+```bash
+npx prisma generate && npx prisma db push
+```
 
-## Stay in touch
+Run the app:
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+```bash
+npm run start:dev
+```
+
+### Tests
+
+```bash
+npm run test        # unit tests
+npm run test:e2e     # e2e tests
+npm run test:cov     # coverage report
+```
+
+> ⚠️ **Note**: An earlier commit in this fork accidentally included a `.env` file with live database/API credentials. History has been rewritten to remove it and `.env` is now gitignored — if you're pulling an old clone, re-clone fresh and never commit real secrets to this repo.
+
+## Attribution
+
+Original project by [Harsh Patel](https://github.com/Harsh-Patel-05) at [HRMS-Portal-using-nestjs](https://github.com/Harsh-Patel-05/HRMS-Portal-using-nestjs). This fork is kept for personal reference.
 
 ## License
 
-Nest is [MIT licensed](LICENSE).
+UNLICENSED — personal reference fork, not intended for production use.
